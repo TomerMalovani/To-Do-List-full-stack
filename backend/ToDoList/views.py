@@ -12,7 +12,7 @@ import json
 @require_http_methods(['GET'])
 def get_tasks(request):
     try:
-        data = list(Tasks.objects.values())
+        data = list(Tasks.objects.values().order_by('-star'))
         return JsonResponse({"all": data})
     except:
         raise Exception
@@ -54,7 +54,7 @@ def star_tasks(request):
             task_to_change.star = True
         task_to_change.save()
 
-        # print(task_to_change.star)
-        return JsonResponse(model_to_dict(task_to_change))
+        data = list(Tasks.objects.values().order_by('-star'))
+        return JsonResponse({"all": data})
     except:
         raise Exception
