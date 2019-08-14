@@ -14,9 +14,21 @@ class ToDoList extends React.Component {
     }
 
     starItem(task) {
+        console.log(document.getElementById(task["id"]))
+        if (task["star"]) {
+            document.getElementById(task["id"]).className = "far fa-star taskstar"
+        }
+        else {
+            document.getElementById(task["id"]).className = "fas fa-star taskstar"
+        }
+
         api.starItem(task,
             taskstar => {
-                console.log(taskstar["star"])
+                let tasks = [];
+                taskstar.all.forEach(function (task) {
+                    tasks.push(task);
+                });
+                this.setState({ ToDoList: tasks })
             },
             error => {
                 console.log("opps")
@@ -33,8 +45,8 @@ class ToDoList extends React.Component {
             Task => {
                 let tasks = [];
                 Task.all.forEach(function (task) {
-                    console.log(task)
-                    tasks.push(task)
+                    console.log(task);
+                    tasks.push(task);
                 });
                 this.setState({ ToDoList: tasks })
             },
@@ -49,11 +61,9 @@ class ToDoList extends React.Component {
     addTask(newtask) {
         api.createTask({ "task": newtask, "star": false, "user_id": 47 },
             Task => {
-                console.log(Task);
                 this.setState({
                     ToDoList: [...this.state.ToDoList, Task]
                 });
-
             },
             error => {
                 console.log(error);
@@ -89,7 +99,7 @@ class ToDoList extends React.Component {
                 <InputBar addTask={this.addTask} />
                 <ul className="ToDOList">
                     {this.state.ToDoList.map((item, index) => (
-                        <li className="ToDoTask" key={index}><span><i onClick={() => { this.starItem(item) }} class="far fa-star taskstar"></i>{item["task"]}</span> <span><i onClick={() => { this.deletetask(index, item) }} class="fas fa-trash-alt deleteBtn"></i></span></li>
+                        <li className="ToDoTask" key={item["id"]}><span><i id={item["id"]} onClick={() => { this.starItem(item) }} class="far fa-star taskstar"></i>{item["task"]}</span> <span><i onClick={() => { this.deletetask(index, item) }} class="fas fa-trash-alt deleteBtn"></i></span></li>
                     ))}
                 </ul>
             </div >
