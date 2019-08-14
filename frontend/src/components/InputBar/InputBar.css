@@ -1,0 +1,18 @@
+
+.InputDiv{
+    height: 100%;
+    border-right: 1px solid white;
+
+}
+
+.InputBtn{
+    width: 100%;
+}
+
+.InputBar{
+    border: none;
+    outline: none;
+    padding: 3px;
+    background: inherit;
+    color: white;
+}
