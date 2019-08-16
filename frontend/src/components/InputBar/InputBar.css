@@ -9,6 +9,10 @@
     width: 100%;
 }
 
+.hide{
+    display: none;
+}
+
 .InputBar{
     border: none;
     outline: none;
@@ -16,3 +20,10 @@
     background: inherit;
     color: white;
 }
+
+.InputBar::placeholder{
+    color: white;
+}
+
+
+

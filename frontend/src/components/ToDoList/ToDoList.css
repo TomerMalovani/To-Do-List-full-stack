@@ -13,6 +13,8 @@ body{
     display: flex;
     justify-content: left;
     border: solid white 1px;
+        background: linear-gradient(to left, rgb(64, 44, 238), rgb(9, 13, 230));
+
 }
 
 .ToDOList{
@@ -33,15 +35,69 @@ body{
     color: white;
 }
 
+.taskContent{
+    font-family: 'Bitter', serif;
+    font-size: 15px;
+}
 .taskstar{
     padding: 5px;
 }
 
 .taskstar:hover{
     cursor: pointer;
+    color: rgb(255, 157, 0);
+}
+
+.taskstaron{
+     padding: 5px;
+     color: rgb(255, 157, 0);
 }
 
 .deleteBtn:hover{
     cursor: pointer;
+    color: red;
 }
+
+.editTask{
+     padding: 5px;
+    color: white;
+}
+
+.editTask:hover{
+    cursor: pointer;
+    color: green;
+
+}
+
+.editpressed{
+        color: green;
+         padding: 5px;
+}
+
+.hide{
+    display: none;
+}
+
+.InputBar{
+    font-family: 'Bitter', serif;
+    border: none;
+    outline: none;
+    padding: 3px;
+    background: inherit;
+    color: white;
+    font-family: 'Bitter', serif;
+    font-size: 15px;
+}
+
+.InputBar::placeholder{
+    color: white;
+}
+
+
+
+.logo{
+  
+}
+/* EasyTask */
+
 

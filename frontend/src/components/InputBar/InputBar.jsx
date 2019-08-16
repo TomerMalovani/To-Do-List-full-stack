@@ -32,7 +32,7 @@ class InputBar extends React.Component {
     render() {
         return (
             <div class="InputDiv">
-                <input maxlength="30" className="InputBar" type="text" placeholder="what i gotta do.." value={this.state.input} onChange={this.changetext}></input>
+                <input maxlength="25" className="InputBar" type="text" placeholder="what i gotta do.." value={this.state.input} onChange={this.changetext}></input>
                 <button className="InputBtn" onClick={this.inputInsert}>Lets do It</button>
             </div>
 

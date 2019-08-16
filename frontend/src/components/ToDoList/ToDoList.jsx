@@ -8,19 +8,40 @@ class ToDoList extends React.Component {
 
         this.state = {
             ToDoList: [],
-        };
+            changeInput: "",
+            editable: "far fa-edit editTask"
+        }
         this.addTask = this.addTask.bind(this);
         this.starItem = this.starItem.bind(this);
+        this.keepStarLogic = this.keepStarLogic.bind(this);
+        this.editTask = this.editTask.bind(this);
+        this.changetext = this.changetext.bind(this);
+    }
+
+    changetext(e) {
+        this.setState({
+            changeInput: e.target.value
+        });
+
+        e.target.value = this.state.changeInput
+        console.log(e.target.value)
+        // = this.state.changeInput
+    }
+
+    editTask(item) {
+        let toggleClassEdit = this.state.editable === "far fa-edit editTask" ? "fas fa-edit editpressed" : "far fa-edit editTask";
+        console.log(toggleClassEdit)
+        this.setState({ editable: toggleClassEdit })
+
+    }
+
+    keepStarLogic(task) {
+        var toggleClass = task["star"] ? "fas fa-star taskstaron" : "far fa-star taskstar";
+        return toggleClass;
     }
 
     starItem(task) {
-        console.log(document.getElementById(task["id"]))
-        if (task["star"]) {
-            document.getElementById(task["id"]).className = "far fa-star taskstar"
-        }
-        else {
-            document.getElementById(task["id"]).className = "fas fa-star taskstar"
-        }
+
 
         api.starItem(task,
             taskstar => {
@@ -49,6 +70,7 @@ class ToDoList extends React.Component {
                     tasks.push(task);
                 });
                 this.setState({ ToDoList: tasks })
+
             },
             error => {
                 console.log(error);
@@ -95,16 +117,31 @@ class ToDoList extends React.Component {
 
     render() {
         return (
-            <div className="wraper">
-                <InputBar addTask={this.addTask} />
-                <ul className="ToDOList">
-                    {this.state.ToDoList.map((item, index) => (
-                        <li className="ToDoTask" key={item["id"]}><span><i id={item["id"]} onClick={() => { this.starItem(item) }} class="far fa-star taskstar"></i>{item["task"]}</span> <span><i onClick={() => { this.deletetask(index, item) }} class="fas fa-trash-alt deleteBtn"></i></span></li>
-                    ))}
-                </ul>
-            </div >
+            <div>
+                <h2 class="logo">EasyTask</h2>
+                <div className="wraper">
+                    <InputBar addTask={this.addTask} />
+                    <ul className="ToDOList">
+                        {this.state.ToDoList.map((item, index) => (
+                            <li className="ToDoTask" key={item["id"]}>
+                                <span><i id={item["id"]} onClick={() => { this.starItem(item) }} class={this.keepStarLogic(item)}></i><span>
+                                    <input onChange={this.changetext} value={item["task"]} type="text" class="InputBar hide">
+                                    </input><span class="taskContent"  >{item["task"]}</span>
+                                </span></span>
+                                <span><i class={this.state.editable} onClick={() => { this.editTask(item) }}></i><i onClick={() => { this.deletetask(index, item) }} class="fas fa-trash-alt deleteBtn"></i></span></li>
+                        ))}
+                    </ul>
+                </div >
+            </div>
         );
     }
 }
 
 export default ToDoList;
+
+// if (task["star"]) {
+//     document.getElementById(task["id"]).className = "far fa-star taskstar"
+// }
+// else {
+//     document.getElementById(task["id"]).className = "fas fa-star taskstaron"
+// }
