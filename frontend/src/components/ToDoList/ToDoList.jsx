@@ -14,7 +14,6 @@ class ToDoList extends React.Component {
         this.addTask = this.addTask.bind(this);
         this.starItem = this.starItem.bind(this);
         this.keepStarLogic = this.keepStarLogic.bind(this);
-        this.editTask = this.editTask.bind(this);
         this.changetext = this.changetext.bind(this);
     }
 
@@ -28,12 +27,6 @@ class ToDoList extends React.Component {
         // = this.state.changeInput
     }
 
-    editTask(item) {
-        let toggleClassEdit = this.state.editable === "far fa-edit editTask" ? "fas fa-edit editpressed" : "far fa-edit editTask";
-        console.log(toggleClassEdit)
-        this.setState({ editable: toggleClassEdit })
-
-    }
 
     keepStarLogic(task) {
         var toggleClass = task["star"] ? "fas fa-star taskstaron" : "far fa-star taskstar";
@@ -128,7 +121,7 @@ class ToDoList extends React.Component {
                                     <input onChange={this.changetext} value={item["task"]} type="text" class="InputBar hide">
                                     </input><span class="taskContent"  >{item["task"]}</span>
                                 </span></span>
-                                <span><i class={this.state.editable} onClick={() => { this.editTask(item) }}></i><i onClick={() => { this.deletetask(index, item) }} class="fas fa-trash-alt deleteBtn"></i></span></li>
+                                <span><i onClick={() => { this.deletetask(index, item) }} class="fas fa-trash-alt deleteBtn"></i></span></li>
                         ))}
                     </ul>
                 </div >
@@ -138,10 +131,3 @@ class ToDoList extends React.Component {
 }
 
 export default ToDoList;
-
-// if (task["star"]) {
-//     document.getElementById(task["id"]).className = "far fa-star taskstar"
-// }
-// else {
-//     document.getElementById(task["id"]).className = "fas fa-star taskstaron"
-// }

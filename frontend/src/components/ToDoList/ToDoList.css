@@ -4,7 +4,7 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-    background: linear-gradient(to left, rgb(228, 155, 255), rgb(169, 38, 230));
+    background: linear-gradient(to left, #4169e1,#4191e1);
 }
 
 .wraper{
@@ -13,7 +13,7 @@ body{
     display: flex;
     justify-content: left;
     border: solid white 1px;
-        background: linear-gradient(to left, rgb(64, 44, 238), rgb(9, 13, 230));
+        background: linear-gradient(to left, #5d53e1, #413a9d);
 
 }
 
